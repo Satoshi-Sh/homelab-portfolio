@@ -1,0 +1,21 @@
+body {
+    background-color: paleturquoise;
+}
+
+.content {
+    text-align: center;
+}
+
+.board{
+    background-color: aliceblue;
+    border-radius: 5px;
+    border: solid black 2px;
+    width: 60vw;
+    margin: auto;
+
+}
+
+.board p {
+    margin: 1rem 1rem;
+    text-align: left;
+}
