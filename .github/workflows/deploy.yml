@@ -22,7 +22,9 @@ jobs:
         run: |
           nohup cloudflared tunnel --no-autoupdate run --token ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }} &
           sleep 20  # Give cloudflared time to establish the connection
-          
+      
+      - name: Verify tunnel connection
+        run: cloudflared tunnel info
 
       - name: Configure SSH
         run: |
