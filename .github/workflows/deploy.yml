@@ -29,6 +29,6 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
       - name: Deploy site
         id: deploySite
-        run: ssh my-homelab "~/redeploy-site.sh"
+        run: ssh -v my-homelab "~/redeploy-site.sh"
       - name: Docker status
         run: ssh my-homelab "docker ps"
