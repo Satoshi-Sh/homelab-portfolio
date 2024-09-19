@@ -24,7 +24,7 @@ jobs:
           sleep 20  # Give cloudflared time to establish the connection
       
       - name: Verify tunnel connection
-        run: cloudflared tunnel info
+        run: cloudflared tunnel list
 
       - name: Configure SSH
         run: |
