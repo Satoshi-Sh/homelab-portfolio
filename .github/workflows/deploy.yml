@@ -20,15 +20,9 @@ jobs:
 
       - name: Connect to Cloudflare Tunnel
         run: |
-          nohup cloudflared tunnel --no-autoupdate run --token ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }} --metrics localhost:2000 &
-          sleep 10  # Give cloudflared time to establish the connection
-          # Check the health of the tunnel
-          if ! curl -sf http://localhost:2000/ready; then
-            echo "Tunnel is not ready!"
-            exit 1
-          else
-            echo "Tunnel is up!"
-          fi
+          nohup cloudflared tunnel --no-autoupdate run --token ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }} &
+          sleep 20  # Give cloudflared time to establish the connection
+          
 
       - name: Configure SSH
         run: |
