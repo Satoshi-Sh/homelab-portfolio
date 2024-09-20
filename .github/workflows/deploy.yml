@@ -27,7 +27,7 @@ jobs:
       - name: Connect to Cloudflare Tunnel
         run: |
           nohup cloudflared tunnel --no-autoupdate run --token ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}
-
+          & sleep 20
       - name: Connect and run command on remote server
         uses: and-fm/cloudflared-ssh-action@v3
         with:
