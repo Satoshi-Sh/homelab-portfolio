@@ -38,11 +38,7 @@ jobs:
           SSH_HOSTNAME: ${{ secrets.SSH_IP }}
 
       - name: Deploy site
-        id: deploySite
-        run: ssh -vvv my-homelab "~/redeploy-site.sh"
-
-      - name: Docker status
-        run: ssh my-homelab "docker ps"
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOSTNAME }} "~/redeploy-site.sh"
 
       - name: Cleanup
         if: always()
