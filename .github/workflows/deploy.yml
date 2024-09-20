@@ -38,7 +38,7 @@ jobs:
           SSH_HOSTNAME: ${{ secrets.SSH_IP }}
 
       - name: Deploy site
-        run: ssh -vvv ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP }} "~/redeploy-site.sh"
+        run: ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOSTNAME }} "~/redeploy-site.sh"
 
       - name: Cleanup
         if: always()
