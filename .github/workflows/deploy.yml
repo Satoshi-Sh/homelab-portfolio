@@ -7,8 +7,13 @@ on:
   workflow_dispatch:
 
 jobs:
+  terraform_apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
   deploy:
-    name: Deply website
+    name: Deploy website
     needs: terraform_apply
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +28,7 @@ jobs:
         run: |
           nohup cloudflared tunnel --no-autoupdate run --token ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }} &
           sleep 20  # Give cloudflared time to establish the connection 
+
       - name: Connect and run command on remote server
         uses: and-fm/cloudflared-ssh-action@v3
         with:
