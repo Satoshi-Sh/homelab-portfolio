@@ -21,10 +21,7 @@ jobs:
       - name: Connect to Cloudflare Tunnel
         run: |
           nohup cloudflared tunnel --no-autoupdate run --token ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }} &
-          sleep 20  # Give cloudflared time to establish the connection
-      - name: Check Cloudflare Tunnel Status
-        run: |
-          ps aux | grep cloudflared    
+          sleep 20  # Give cloudflared time to establish the connection   
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
@@ -45,7 +42,7 @@ jobs:
 
       - name: Deploy site
         id: deploySite
-        run: ssh -v my-homelab "~/redeploy-site.sh"
+        run: ssh -vvv my-homelab "~/redeploy-site.sh"
 
       - name: Docker status
         run: ssh my-homelab "docker ps"
