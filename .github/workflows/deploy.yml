@@ -24,6 +24,7 @@ jobs:
           sleep 20  # Give cloudflared time to establish the connection  
       - name: Configure SSH
         run: |
+          ssh-keyscan $SSH_HOSTNAME >> ~/.ssh/known_hosts
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem
           chmod 600 ~/.ssh/deploy-key.pem
@@ -42,7 +43,7 @@ jobs:
 
       - name: Deploy site
         id: deploySite
-        run: cloudflared tunnel list && ssh -v my-homelab "~/redeploy-site.sh"
+        run: ssh -v my-homelab "~/redeploy-site.sh"
 
       - name: Docker status
         run: ssh my-homelab "docker ps"
