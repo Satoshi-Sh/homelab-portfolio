@@ -24,8 +24,9 @@ jobs:
           sleep 20  # Give cloudflared time to establish the connection  
       - name: Configure SSH
         run: |
-          ssh-keyscan $SSH_HOSTNAME >> ~/.ssh/known_hosts
           mkdir -p ~/.ssh/
+          touch ~/.ssh/known_hosts
+          ssh-keyscan $SSH_HOSTNAME >> ~/.ssh/known_hosts
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem
           chmod 600 ~/.ssh/deploy-key.pem
           cat >> ~/.ssh/config <<END
