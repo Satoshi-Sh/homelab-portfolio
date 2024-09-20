@@ -27,8 +27,9 @@ jobs:
         with:
           key: SSH_PRIVATE_KEY
           name: id_ed25519
+          known_hosts: $secrets.SSH_KNOWN_HOSTS
           config: |
-            Host $SSH_HOST
+            Host $SSH_HOSTNAME
               ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h --id ${{ secrets.CF_SERVICE_TOKEN_ID }} --secret ${{ secrets.CF_SERVICE_TOKEN_SECRET }}
               IdentityFile ~/.ssh/id_ed25519
         env:
