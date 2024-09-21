@@ -7,27 +7,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  terraform_apply:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-  deploy:
+  ssh_command:
     name: Deploy website
     needs: terraform_apply
     runs-on: ubuntu-latest
     steps:
-      - name: Install cloudflared
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget
-          wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
-          sudo dpkg -i cloudflared-linux-amd64.deb
-
-      - name: Connect to Cloudflare Tunnel
-        run: |
-          nohup cloudflared tunnel --no-autoupdate run --token ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}
-          & sleep 20
       - name: Connect and run command on remote server
         uses: and-fm/cloudflared-ssh-action@v3
         with:
@@ -39,7 +23,3 @@ jobs:
           service_token_id: ${{ secrets.SERVICE_TOKEN_ID }}
           service_token_secret: ${{ secrets.SERVICE_TOKEN_SECRET }}
           commands: ~/redeploy-site.sh
-        
-      - name: Cleanup
-        if: always()
-        run: killall cloudflared
