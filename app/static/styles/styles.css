@@ -38,7 +38,6 @@ body {
     background-color: #e8e8f1;
     background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e8e8f1 15px ), repeating-linear-gradient( #6d6f9155, #6d6f91 );
     height:100vh;
-    overflow-y: hidden;
 }
 
 .content {
