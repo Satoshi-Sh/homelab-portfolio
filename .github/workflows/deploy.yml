@@ -22,4 +22,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           service_token_id: ${{ secrets.SERVICE_TOKEN_ID }}
           service_token_secret: ${{ secrets.SERVICE_TOKEN_SECRET }}
-          commands: ~/projects/homelab-portfolio/redeploy-site.sh
+          commands: | 
+          chmod +x ~/projects/homelab-portfolio/redeploy-site.sh 
+          ~/projects/homelab-portfolio/redeploy-site.sh
