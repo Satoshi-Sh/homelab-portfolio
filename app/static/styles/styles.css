@@ -66,8 +66,8 @@ html {
 }
 
 .board{
-    background-color: rgb(174, 206, 235);
-    border-radius: 5px;
+    background-color: white;
+    border-radius: 10px;
     border: solid rgba(34, 34, 34, 0.534) 2px;
     margin: 1rem auto;
     padding:1rem;
@@ -93,3 +93,12 @@ html {
     font-weight: bolder;
     font-style: italic;
 }
+
+img {
+    width: 80%;
+    height:auto;
+    max-width: 600px;
+
+}
+
+
